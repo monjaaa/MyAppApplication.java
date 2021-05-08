@@ -15,16 +15,21 @@ import org.springframework.web.servlet.ModelAndView;
 public class BoardController {
 
     @GetMapping("/board")
-    public ModelAndView viewBoard(ModelAndView modelAndView){
+    public ModelAndView viewBoard(ModelAndView modelAndView) {
         modelAndView.setViewName("board");
         modelAndView.addObject("commentForm", new CommentForm());
         return modelAndView;
     }
 
     @PostMapping("/board")
-    public String postComment(
+    public ModelAndView postComment(
             @Validated @ModelAttribute CommentForm comment,
             BindingResult bindingResult) {
-        return "redirect:/board";
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("/board");
+            modelAndView.addObject("commentForm", comment);
+            return modelAndView;
+        }
+        return new ModelAndView("redirect:/board");
     }
 }
