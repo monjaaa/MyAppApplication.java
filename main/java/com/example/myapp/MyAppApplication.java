@@ -10,4 +10,4 @@ public class MyAppApplication {
 		SpringApplication.run(MyAppApplication.class, args);
 	}
 
-}
+}//変更点git
