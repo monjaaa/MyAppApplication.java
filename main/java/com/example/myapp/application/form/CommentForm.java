@@ -3,7 +3,6 @@ package com.example.myapp.application.form;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.lang.Nullable;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
