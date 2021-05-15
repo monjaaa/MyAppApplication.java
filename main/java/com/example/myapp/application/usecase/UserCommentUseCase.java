@@ -2,12 +2,14 @@ package com.example.myapp.application.usecase;
 
 import com.example.myapp.application.form.CommentForm;
 import com.example.myapp.domain.model.UserComment;
+import com.example.myapp.domain.model.UserCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserCommentUseCase {
+    private final UserCommentRepository repository;
 
     /**
      * ユーザの書き込みをDBに反映し、表示するデータをプレゼンテーション層に渡す
@@ -23,5 +25,7 @@ public class UserCommentUseCase {
         );
 
         // 例えばここで、直近の投稿の一覧を取得し、今回と同じ内容の投稿がないかチェックする
+
+        repository.save(userComment);
     }
 }
