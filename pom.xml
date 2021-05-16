@@ -26,12 +26,7 @@
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId><!-- なんかエラーでるから追加した 意味わからん-->
-			<artifactId>slf4j-api</artifactId><!-- SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-												　　SLF4J: Defaulting to no-operation (NOP) logger implementation
-												　　SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details. -->
-		</dependency>
+
 		<!-- validationしたいので -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,7 +54,6 @@
 			<!--<scope>test</scope> 本来テストスコープだけで使うべき、テスト開発用途のDB。本番環境非推奨-->
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -82,26 +76,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate.validator</groupId><!-- なんかエラーでるから追加した-->
+			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.1.7.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId><!-- なんかエラーでるから追加した-->
-			<artifactId>spring-boot-test</artifactId>
-			<version>2.4.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId><!-- なんかエラーでるから追加した-->
-			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>2.4.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.6</version>
-		</dependency>
+
 	</dependencies>
 
 	<build>
