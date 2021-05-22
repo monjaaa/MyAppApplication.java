@@ -2,6 +2,7 @@ package com.example.myapp.presentation;
 
 import com.example.myapp.application.form.CommentForm;
 import com.example.myapp.application.usecase.UserCommentUseCase;
+import com.example.myapp.domain.model.UserComments;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,11 +18,15 @@ public class BoardController {
     private final UserCommentUseCase userCommentUseCase;
 
     @GetMapping("/board")
-    public ModelAndView viewBoard(ModelAndView modelAndView) {
+    public ModelAndView viewBoard(ModelAndView modelAndView){
+        UserComments userComments = userCommentUseCase.read();
+        modelAndView.addObject("comments", userComments.getValues());
+
         modelAndView.setViewName("board");
         modelAndView.addObject("commentForm", new CommentForm());
         return modelAndView;
     }
+
 
     @PostMapping("/board")
     public ModelAndView postComment(

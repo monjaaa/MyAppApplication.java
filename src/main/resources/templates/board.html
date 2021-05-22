@@ -11,7 +11,11 @@
 <body>
 <div layout:fragment="layoutContent">
     <div id="board-area">
-        投稿の内容を表示する場所
+        <h2 class="title">
+            【速報】ライスとカレー混ぜる人が3割存在する事が発覚★109
+        </h2>
+        <div th:replace="~{fragments/thread(comments=${comments})}">
+        </div>
     </div>
     <hr>
     <form method="POST" action="/board" th:object="${commentForm}">
