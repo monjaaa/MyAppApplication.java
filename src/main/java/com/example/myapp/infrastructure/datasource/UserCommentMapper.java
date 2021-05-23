@@ -1,4 +1,4 @@
-package com.example.myapp.datasource;
+package com.example.myapp.infrastructure.datasource;
 
 import com.example.myapp.application.dto.UserCommentDto;
 import com.example.myapp.application.dto.UserCommentReadDto;

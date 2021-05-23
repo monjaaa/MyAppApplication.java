@@ -11,9 +11,16 @@ spring:
       username: sa
       password:
       driver-class-name: org.h2.Driver
-    schema: classpath:h2/schema.sql
+    schema:
+      - classpath:h2/schema.sql
+      - classpath:org/springframework/security/core/userdetails/jdbc/users.ddl
     data: classpath:h2/data.sql # これ！！！！
     initialization-mode: embedded # (DB初期化用SQL↑実行を)常に行う.EMBEDDED=h2dbのとき、の意味. ALWAYSは無条件
                                   # ファイルH2DBを読み込む時、書き込んだH2DBドライバと別バージョンで読み込むとファイル破損する
                                   # urlのjdbc:h2:memはH2のインメモリDBモード利用であることを示す
                                   # jdbc:h2:fileとすると、ファイルDBに保存することができ、簡単な永続化が可能
+    logging:
+      level:
+        org:
+          springframework:
+            security: DEBUG
