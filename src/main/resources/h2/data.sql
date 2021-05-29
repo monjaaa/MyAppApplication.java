@@ -1,6 +1,6 @@
-INSERT INTO USER_COMMENT(NAME, MAILADDRESS, TEXT) VALUES
-('nameA', 'example1example.com', 'aaaaa'),　
-('nameB', 'example2@example.com', 'aiueo');
+INSERT INTO USER_COMMENT(NAME, USER_ID, MAILADDRESS, TEXT) VALUES
+('nameA', 'admin', 'example1@example.com', 'aaaaa'),　
+('nameB', 'admin', 'example2@example.com', 'aiueo');
 
 INSERT INTO USERS (USERNAME, PASSWORD, ENABLED) VALUES
 ('admin', '{bcrypt}$2a$10$vC.r53zKYPwEXplBYH3mxuZP52r2u3udRcEg9yTUmwYE5yjmoUXyG', true);

@@ -3,7 +3,10 @@ package com.example.myapp.presentation;
 import com.example.myapp.application.form.CommentForm;
 import com.example.myapp.application.usecase.UserCommentUseCase;
 import com.example.myapp.domain.model.UserComments;
+import com.example.myapp.domain.model.UserId;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +33,7 @@ public class BoardController {
 
     @PostMapping("/board")
     public ModelAndView postComment(
+            @AuthenticationPrincipal User user,
             @Validated @ModelAttribute CommentForm comment,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -38,8 +42,7 @@ public class BoardController {
             return modelAndView;
         }
         //エラーが無ければ保存する
-        userCommentUseCase.write(comment);
+        userCommentUseCase.write(comment, user);
         return new ModelAndView("redirect:/board");
-
     }
 }

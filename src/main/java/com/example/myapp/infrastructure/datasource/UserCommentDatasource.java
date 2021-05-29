@@ -5,6 +5,7 @@ import com.example.myapp.application.dto.UserCommentReadDto;
 import com.example.myapp.domain.model.UserComment;
 import com.example.myapp.domain.model.UserCommentRepository;
 import com.example.myapp.domain.model.UserComments;
+import com.example.myapp.domain.model.UserId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -18,20 +19,26 @@ public class UserCommentDatasource implements UserCommentRepository {
 
     @Override
     public void save(UserComment userComment) {
-
-    }
-
-    @Override
-    public void save(UserCommentDto dto) {
-        mapper.insert(dto);
+        mapper.insert(UserCommentDto.from(userComment));
     }
 
     @Override
     public UserComments select() {
         List<UserCommentReadDto> dtos = mapper.select();
+        return convert(dtos);
+    }
+
+    @Override
+    public UserComments select(UserId userId) {
+        List<UserCommentReadDto> dtos = mapper.selectById(userId.toString());
+        return convert(dtos);
+    }
+
+    private UserComments convert(List<UserCommentReadDto> dtos) {
         return UserComments.from(
                 dtos.stream().map( dto -> UserComments.UserComment.from(
                         dto.getId(),
+                        dto.getUserId(),
                         dto.getName(),
                         dto.getMailAddress(),
                         dto.getComment(),

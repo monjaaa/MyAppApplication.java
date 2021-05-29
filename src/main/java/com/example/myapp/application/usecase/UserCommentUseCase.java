@@ -4,7 +4,9 @@ import com.example.myapp.application.form.CommentForm;
 import com.example.myapp.domain.model.UserComment;
 import com.example.myapp.domain.model.UserCommentRepository;
 import com.example.myapp.domain.model.UserComments;
+import com.example.myapp.domain.model.UserId;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,10 +19,11 @@ public class UserCommentUseCase {
      * @param commentForm ユーザの入力データ
      * @return 表示するデータ
      */
-    public void write(CommentForm commentForm) {
+    public void write(CommentForm commentForm, User user) {
         // フォームオブジェクトからドメインオブジェクトへ変換
         UserComment userComment = UserComment.from(
                 commentForm.getName(),
+                user.getUsername(),
                 commentForm.getMailAddress(),
                 commentForm.getComment()
         );
@@ -34,7 +37,11 @@ public class UserCommentUseCase {
      * 投稿の取得
      * @return 投稿のリスト
      */
-    public UserComments read(){
+    public UserComments read() {
         return repository.select();
+    }
+
+    public UserComments read(UserId userId) {
+        return repository.select(userId);
     }
 }
